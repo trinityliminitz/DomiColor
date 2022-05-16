@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main role="main" class="inner cover">
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading">Kelompok 13</h1>
+            <br>
+            <h4>Anggota Kelompok:</h4>
+            <br>
+            {% for anggota in anggota %}
+                <p class="lead">
+                    {{ anggota }}
+                </p>
+            {% endfor %}
+        </main>
+    </main>
+{% endblock %}

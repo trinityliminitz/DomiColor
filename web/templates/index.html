@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main role="main" class="inner cover">
+        <h1 class="cover-heading">Proyek Akhir Aplikasi-Web Python</h1>
+        <br>
+        <p class="lead">
+            <b>DomiColor</b> merupakan aplikasi dimana pengguna dapat mengetahui lima warna dominan dari gambar yang dipilih.
+        </p>
+        <br>
+        <p class="lead">
+            <a href="{{ url_for('klasifikasi') }}" class="btn btn-lg btn-secondary">Mulai Klasifikasi</a>
+        </p>
+    </main>
+{% endblock %}

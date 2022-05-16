@@ -1,0 +1,5 @@
+1. Leader -> Dominant Color | DomiColor (Kevin)
+2. Merumuskan algoritma -> KNN (Judah)
+3. Mencari dataset -> Gambar | Mario.png (Andreas)
+4. Membuat visual -> Gui & Web (Timo)
+5. Membuat visual -> Gui & Web (Edrei)

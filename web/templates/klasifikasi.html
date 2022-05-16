@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main role="main" class="inner cover">
+        {% if filename %}
+            <div>
+                <br>
+                <h1 class="cover-heading">Hasil</h1>
+                <br>
+                <img src="{{ url_for('display_image', filename=filename) }}" class="space">
+                <img src="{{ url_for('display_image', filename=out) }}" class="space">
+                <br>
+                <p class="lead">
+                    <a href="{{ url_for('klasifikasi') }}" class="btn btn-lg btn-secondary">Gambar Lain</a>
+                </p>
+            </div>
+        {% else %}
+            <h1 class="cover-heading">Upload Gambar</h1>
+            <br>
+            <p class="lead">
+                Silahkan pilih gambar dengan format <i>.png</i> lalu tekan tombol <i> Mulai</i>.
+            </p>
+            <form method="post" action="/klasifikasi/" enctype="multipart/form-data">
+                <dl>
+                    <p>
+                        <input type="file"
+                               name="file"
+                               autocomplete="off"
+                               accept="image/png"
+                               required>
+                    </p>
+                </dl>
+                <br>
+                <button class="btn btn-lg btn-secondary" type="submit">Mulai</button>
+            </form>
+        {% endif %}
+    </main>
+{% endblock %}
