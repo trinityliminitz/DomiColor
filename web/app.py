@@ -123,23 +123,36 @@ def domi_color(file_path):
     p_and_c = sorted(p_and_c, reverse=True)
 
     # Menyiapkan laporan akhir
-    rows = 1000
-    cols = int((org_img.shape[0]/org_img.shape[1])*rows)
-    img = cv2.resize(org_img, dsize=(rows, cols),
-                     interpolation=cv2.INTER_LINEAR)
-    copy = img.copy()
-    cv2.rectangle(copy, (rows//2-250, cols//2-90),
-                  (rows//2+250, cols//2+110), (255, 255, 255), -1)
-    final = cv2.addWeighted(img, 0.1, copy, 0.9, 0)
-    cv2.putText(final, '  Warna paling dominan adalah', (rows//2-230,
-                cols//2-40), cv2.FONT_HERSHEY_DUPLEX, 0.8, (0, 0, 0), 1, cv2.LINE_AA)
-    start = rows//2-220
-    for i in range(5):
-        end = start+70
-        final[cols//2:cols//2+70, start:end] = p_and_c[i][1]
-        cv2.putText(final, str(i+1), (start+25, cols//2+45),
-                    cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 1, cv2.LINE_AA)
-        start = end+20
+    # rows = 1000
+    # cols = int((org_img.shape[0]/org_img.shape[1])*rows)
+    # img = cv2.resize(org_img, dsize=(rows, cols),
+    #                  interpolation=cv2.INTER_LINEAR)
+    # copy = img.copy()
+    # cv2.rectangle(copy, (rows//2-250, cols//2-90),
+    #               (rows//2+250, cols//2+110), (255, 255, 255), -1)
+    # final = cv2.addWeighted(img, 0.1, copy, 0.9, 0)
+    # cv2.putText(final, '  Warna paling dominan adalah', (rows//2-230,
+    #             cols//2-40), cv2.FONT_HERSHEY_DUPLEX, 0.8, (0, 0, 0), 1, cv2.LINE_AA)
+    # start = rows//2-220
+    # for i in range(5):
+    #     end = start+70
+    #     final[cols//2:cols//2+70, start:end] = p_and_c[i][1]
+    #     cv2.putText(final, str(i+1), (start+25, cols//2+45),
+    #                 cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 255), 1, cv2.LINE_AA)
+    #     start = end+20
 
     # Menyimpan laporan akhir sebagai output gambar
-    cv2.imwrite(os.path.join(path , OUTPUT_FINAL), final)
+    # cv2.imwrite(os.path.join(path , OUTPUT_FINAL), final)
+    
+    block = np.ones((50,50,3),dtype='uint')
+    plt.figure(figsize=(12,8))
+    plt.title('Dominant Color Composition')
+    for i in range(clusters):
+        plt.subplot(1,clusters,i+1)
+        block[:] = p_and_c[i][1][::-1] # we have done this to convert bgr(opencv) to rgb(matplotlib) 
+        plt.imshow(block)
+        plt.xticks([])
+        plt.yticks([])
+        plt.xlabel(str(round(p_and_c[i][0]*100,2))+'%')
+
+    plt.savefig('static/uploads/block_plot.png')
